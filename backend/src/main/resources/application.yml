@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ecommerce-backend
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:shop;DB_CLOSE_DELAY=-1;MODE=PostgreSQL}
+    username: ${DB_USER:sa}
+    password: ${DB_PASS:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  sql:
+    init:
+      mode: always
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

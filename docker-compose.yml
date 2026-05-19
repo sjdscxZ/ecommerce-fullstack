@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: shop
+      POSTGRES_DB: shop
+    ports: ["5432:5432"]
+
+  backend:
+    build: ./backend
+    depends_on: [postgres]
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/shop
+      DB_USER: shop
+      DB_PASS: shop
+    ports: ["8080:8080"]
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes: ["./frontend:/app"]
+    command: sh -c "npm install && npm run start -- --host 0.0.0.0"
+    ports: ["4200:4200"]

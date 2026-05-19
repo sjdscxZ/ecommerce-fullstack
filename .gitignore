@@ -1,0 +1,16 @@
+target/
+node_modules/
+dist/
+.angular/
+*.log
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.mvn/
+mvnw
+mvnw.cmd
+out-tsc/
+.DS_Store
